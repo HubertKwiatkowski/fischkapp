@@ -8,9 +8,9 @@ export const createCardComponent = (params) => {
     card.innerText = state.isFront ? params.front : params.back;
   };
 
-  const card = document.createElement("div");
-  card.classList.add("card");
-  card.addEventListener("click", handleToggleCard);
+  const card = document.createElement('div');
+  card.classList.add('card');
+  card.addEventListener('click', handleToggleCard);
   card.innerText = params.front;
 
   return card;
