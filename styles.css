@@ -44,6 +44,35 @@ body {
   text-align: center;
   letter-spacing: 0.07em;
   margin-left: 16px;
+
+}
+
+#card-counter {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 21px;
+  line-height: 25px;
+  text-align: center;
+  letter-spacing: -1px;
+  color: #98a3cf;
+}
+
+#add-card-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: #98a3cf;
+  box-shadow: 0 20px 34px rgba(152, 163, 207, 0.3);
+  margin-right: 16px;
+}
+
+.card-front {
+  position: relative;
+=======
 }
 
 .card-counter {
@@ -72,6 +101,7 @@ body {
 
 .add-card-front,
 .add-card-back {
+
   height: 147px;
   margin: 12px 16px;
   background: #ffffff;
@@ -79,6 +109,27 @@ body {
   filter: drop-shadow(0px 20px 34px rgba(152, 163, 207, 0.3));
 }
 
+
+.edit-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.card-front p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #1c1c1c;
+=======
 .new-value {
   width: 310px;
   font-style: normal;
@@ -155,6 +206,7 @@ body {
 
 .add-card-back .new-value {
   margin-top: 14px;
+
 }
 
 .card {
