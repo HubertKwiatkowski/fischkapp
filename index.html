@@ -25,6 +25,20 @@
       </header>
       <ul id="card-list"></ul>
 
+
+      <div
+        class="card-front"
+        id="card-front-edit"
+      >
+        <div class="edit-icon">
+          <img
+            src="src/icon/edit-cion.svg"
+            alt="edit-icon"
+          />
+        </div>
+        <p>card name placeholder that can be very, very long</p>
+      </div>
+
       <div class="card-front">
         <div class="edit-icon"><img src="src/icon/edit-cion.svg" alt="edit-icon"></div>
         <p>card name placeholder that can be very, very long</p>
@@ -107,6 +121,39 @@
       <br />
     </div>
 
+
+      <div class="edit-card-back">
+        <div class="front-card-info">
+          <p class="front-value">something goes here</p>
+          <div class="btn-delete">
+            <img
+              src="src/icon/trash-icon.svg"
+              alt="trash-icon"
+            />
+          </div>
+        </div>
+        <input
+          type="text"
+          class="edit-value"
+          name="edit-value"
+          id="new-value-back"
+        />
+        <div class="button-wrapper">
+          <button
+            class="btn-cancel"
+            id="btn-cancel"
+          >
+            Cancel
+          </button>
+          <button
+            class="btn-save"
+            id="btn-save"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
 
     <script
       type="module"
