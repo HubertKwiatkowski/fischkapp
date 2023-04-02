@@ -5,28 +5,31 @@ export const createCardComponent = (params) => {
 
   const handleToggleCard = () => {
     state = { ...state, isFront: !state.isFront };
-    card.innerText = state.isFront ? params.front : params.back;
+    card.querySelector('.text').innerText = state.isFront
+      ? params.front
+      : params.back;
   };
 
+  const template = `
+  <div
+    class="card-front"
+  >
+    <div class="edit-icon">
+      <img
+        src="src/icon/edit-icon.svg"
+        alt="edit-icon"
+      />
+    </div>
+    <p class="text"></p>
+  </div>
+  `;
+
   const card = document.createElement('div');
-  // const card = document.insertAdjecentHTML(
-  //   'afterbegin',
-  //   `<div
-  //         class="card-front"
-  //         id="card-front-edit"
-  //       >
-  //         <div class="edit-icon">
-  //           <img
-  //             src="src/icon/edit-icon.svg"
-  //             alt="edit-icon"
-  //           />
-  //         </div>
-  //         <p>card name placeholder that can be very, very long</p>
-  //       </div>`
-  // );
-  card.classList.add('card');
+
+  card.innerHTML = template.trim();
   card.addEventListener('click', handleToggleCard);
-  card.innerText = params.front;
+  const text = card.querySelector('.text');
+  text.innerText = params.back;
 
   return card;
 };
