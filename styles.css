@@ -27,7 +27,6 @@ body {
   height: 60px;
   background: #fff;
   box-shadow: 0 0 34px rgba(152, 163, 207, 0.2);
-  margin-bottom: 30px; //temp
 }
 
 .tittle-wrapper {
@@ -56,36 +55,145 @@ body {
   color: #98a3cf;
 }
 
-.add-card-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border: none;
-  border-radius: 50%;
-  background: #98a3cf;
-  box-shadow: 0 20px 34px rgba(152, 163, 207, 0.3);
-  margin-right: 16px;
+.card-wrapper {
+  position: relative;
+  height: 147px;
+  margin: 12px 16px;
+  border-radius: 16px;
 }
 
 .card-front {
-  position: relative;
+  position: absolute;
   height: 147px;
   margin: 12px 16px;
   background: #ffffff;
   border-radius: 16px;
   filter: drop-shadow(0px 20px 34px rgba(152, 163, 207, 0.3));
+  perspective: 1000px;
+}
+
+.flip {
+  -webkit-animation: flip 0.5s 1ms linear 1 alternate both;
+  animation: flip 0.5s 1ms linear 1 alternate both;
+}
+
+@-webkit-keyframes flip {
+  0% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(0.1);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes flip {
+  0% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(0.1);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+.flipped {
+  -webkit-animation: flipped 0.5s 1ms linear 1 alternate both;
+  animation: flipped 0.5s 1ms linear 1 alternate both;
+}
+
+@-webkit-keyframes flipped {
+  0% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(0.1);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes flipped {
+  0% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(0.1);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+.fade {
+  -webkit-animation: fade 0.5s ease-out both;
+  animation: fade 0.5s ease-out both;
+}
+
+@-webkit-keyframes fade {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.faded {
+  -webkit-animation: faded 0.5s ease-out both;
+  animation: faded 0.5s ease-out both;
+}
+
+@-webkit-keyframes faded {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes faded {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .edit-icon {
-  position: absolute;
-  top: 0;
-  right: 0;
+  margin-right: 16px;
   cursor: pointer;
 }
 
-.card-front p {
+.card-wrapper p {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -100,8 +208,23 @@ body {
   color: #1c1c1c;
 }
 
+/* styles to sort out during future tasks */
+
 .btn-delete {
   cursor: pointer;
+}
+
+.add-card-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: #98a3cf;
+  box-shadow: 0 20px 34px rgba(152, 163, 207, 0.3);
+  margin-right: 16px;
 }
 
 .edit-value {
