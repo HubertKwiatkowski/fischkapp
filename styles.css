@@ -1,77 +1,106 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500;600&display=swap');
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Raleway', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Raleway', sans-serif;
 }
 
 body {
-    background: #373737;
+  background: #373737;
 }
 
 #app {
-    max-width: 375px;
-    height: 755px;
-    margin: 1% auto;
-    background: #fff;
+  max-width: 375px;
+  height: 755px;
+  margin: 1% auto;
+  background: #fff;
 }
 
 #app-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    height: 60px;
-    background: #fff;
-    box-shadow: 0 0 34px rgba(152, 163, 207, 0.2);
-    margin-bottom: 30px; //temp
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+  background: #fff;
+  box-shadow: 0 0 34px rgba(152, 163, 207, 0.2);
+  margin-bottom: 30px; //temp
 }
 
 #tittle-wrapper {
-    display: flex;
+  display: flex;
 }
 
 #app-header h1 {
-    color: #1C1C1C;
-    text-transform: uppercase;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 23px;
-    text-align: center;
-    letter-spacing: 0.07em;
-    margin-left: 16px;
+  color: #1c1c1c;
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 23px;
+  text-align: center;
+  letter-spacing: 0.07em;
+  margin-left: 16px;
 }
 
 #card-counter {
-    font-style: normal;
-    font-weight: 600;
-    font-size: 21px;
-    line-height: 25px;
-    text-align: center;
-    letter-spacing: -1px;
-    color: #98A3CF;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 21px;
+  line-height: 25px;
+  text-align: center;
+  letter-spacing: -1px;
+  color: #98a3cf;
 }
 
 #add-card-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border: none;
-    border-radius: 50%;
-    background: #98A3CF;
-    box-shadow: 0 20px 34px rgba(152, 163, 207, 0.3);
-    margin-right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: #98a3cf;
+  box-shadow: 0 20px 34px rgba(152, 163, 207, 0.3);
+  margin-right: 16px;
 }
 
+.card-front {
+  position: relative;
+  height: 147px;
+  margin: 12px 16px;
+  background: #ffffff;
+  border-radius: 16px;
+  filter: drop-shadow(0px 20px 34px rgba(152, 163, 207, 0.3));
+}
+
+.edit-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.card-front p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #1c1c1c;
+}
 
 .card {
-    background: red;
-    padding: 36px;
-    cursor: pointer;
+  background: red;
+  padding: 36px;
+  cursor: pointer;
 }

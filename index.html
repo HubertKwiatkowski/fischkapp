@@ -1,24 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Fischkapp</title>
-    <link rel="stylesheet" href="./styles.css">
-</head>
-<body>
-
-<div id="app">
-    <header id="app-header">
+    <link
+      rel="stylesheet"
+      href="./styles.css"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <header id="app-header">
         <div id="tittle-wrapper">
-            <h1>Fischkapp</h1>
-            <p id="card-counter">0</p>
+          <h1>Fischkapp</h1>
+          <p id="card-counter">0</p>
         </div>
-        <div id="add-card-button"><img src="src/icon/plus-icon.svg" alt="plus-icon"></div>
-    </header>
-    <ul id="card-list"></ul>
-</div>
+        <div id="add-card-button">
+          <img
+            src="src/icon/plus-icon.svg"
+            alt="plus-icon"
+          />
+        </div>
+      </header>
+      <ul id="card-list"></ul>
 
+      <div class="card-front">
+        <div class="edit-icon"><img src="src/icon/edit-cion.svg" alt="edit-icon"></div>
+        <p>card name placeholder that can be very, very long</p>
+      </div>
 
-<script type="module" src="./js/app.js"></script>
-</body>
+    <script
+      type="module"
+      src="./js/app.js"
+    ></script>
+  </body>
 </html>
