@@ -13,7 +13,7 @@ body {
 
 #app {
   max-width: 375px;
-  height: 755px;
+  min-height: 755px;
   margin: 1% auto;
   background: #fff;
 }
@@ -67,7 +67,6 @@ body {
   background: #98a3cf;
   box-shadow: 0 20px 34px rgba(152, 163, 207, 0.3);
   margin-right: 16px;
-
 }
 
 .card-front {
@@ -156,12 +155,8 @@ body {
   outline: none;
 }
 
-
-}
-
 .card-front {
   position: relative;
-
 }
 
 .card-counter {
@@ -190,14 +185,12 @@ body {
 
 .add-card-front,
 .add-card-back {
-
   height: 147px;
   margin: 12px 16px;
   background: #ffffff;
   border-radius: 16px;
   filter: drop-shadow(0px 20px 34px rgba(152, 163, 207, 0.3));
 }
-
 
 .edit-icon {
   position: absolute;
@@ -218,7 +211,7 @@ body {
   align-items: center;
   text-align: center;
   color: #1c1c1c;
-=======
+}
 .new-value {
   width: 310px;
   font-style: normal;
@@ -249,10 +242,8 @@ body {
   margin: 0 16px 16px;
 }
 
-
 .btn-cancel,
 .btn-back {
-
   cursor: pointer;
   background: #ffffff;
   border: 1px solid #98a3cf;
@@ -263,9 +254,7 @@ body {
   line-height: 18px;
 }
 
-
 .btn-next,
-
 .btn-save {
   cursor: pointer;
   background: #98a3cf;
