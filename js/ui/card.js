@@ -20,25 +20,23 @@ export const getCardComponent = (params) => {
     }, 250);
   };
 
-  const template = `
-  <div class="card-wrapper">
-    <div class="flipper flip card-front"></div>
-    <div class="edit-icon fade fading">
-      <img
-        src="src/icon/edit-icon.svg"
-        alt="edit-icon"
-      />
-    </div>
-    <p class="text fade fading"></p>
-  </div>
-  `;
-
   const card = document.createElement('div');
-  card.classList.add('flip');
+  card.classList.add('card-wrapper');
+  const flipperDiv = document.createElement('div');
+  flipperDiv.classList.add('flipper', 'flip', 'card-front');
+  card.append(flipperDiv);
+  const iconWrapper = document.createElement('div');
+  iconWrapper.classList.add('edit-icon', 'fade', 'fading');
+  const iconImg = document.createElement('img');
+  card.append(iconWrapper);
+  iconImg.src = 'src/icon/edit-icon.svg';
+  iconImg.alt = 'edit-icon';
+  iconWrapper.append(iconImg);
+  const text = document.createElement('p');
+  card.append(text);
+  text.classList.add('text', 'fade', 'fading');
 
-  card.innerHTML = template.trim();
   card.addEventListener('click', handleToggleCard);
-  const text = card.querySelector('.text');
   text.innerText = params.front;
 
   return card;
