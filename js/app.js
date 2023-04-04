@@ -19,7 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const cardList = document.getElementById('card-list');
 
   // Example of how to display created card in our UI
+  // TODO - delay text change to mach flipping
   cardList.append(card);
+
   const cardCountState = appState.flashcards.length;
 
   const cardCounter = document.getElementById('card-counter');
