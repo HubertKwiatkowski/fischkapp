@@ -31,16 +31,20 @@ export const getCardComponent = (params) => {
 
   const card = document.createElement('div');
   card.classList.add('card-wrapper');
+
   const flipperDiv = document.createElement('div');
   flipperDiv.classList.add('flipper', 'card-front');
   card.append(flipperDiv);
+
   const iconWrapper = document.createElement('div');
-  iconWrapper.classList.add('fading', 'edit-icon');
+  iconWrapper.classList.add('fading', 'card-icon');
+
   const iconImg = document.createElement('img');
   card.append(iconWrapper);
   iconImg.src = 'src/icon/edit-icon.svg';
   iconImg.alt = 'edit-icon';
   iconWrapper.append(iconImg);
+
   const text = document.createElement('p');
   card.append(text);
   text.classList.add('fading', 'text');
@@ -56,33 +60,98 @@ export const createNewCardComponent = (params) => {
     isFront: true,
   };
 
-  const handleToggleCard = () => {
-    state = { ...state, isFront: !state.isFront };
-    card.querySelector('.text').innerText = state.isFront
-      ? params.front
-      : params.back;
+  const cancelButton = () => {
+    console.log('cancelclick');
   };
 
-  const template = `
-  <div
-    class="card-front"
-  >
-    <div class="edit-icon">
-      <img
-        src="src/icon/edit-icon.svg"
-        alt="edit-icon"
-      />
-    </div>
-    <p class="text"></p>
-  </div>
-  `;
+  const backButton = () => {
+    handleToggleCard();
 
-  const card = document.createElement('div');
+    console.log('backclick');
+    leftButton.id = 'btn-cancel';
+    setTimeout(() => {
+      leftButton.id = 'btn-cancel';
+      leftButton.innerText = 'Cancel';
+      rightButton.id = 'btn-next';
+      rightButton.innerText = 'Next';
+    }, 250);
+    leftButton.removeEventListener('click', backButton);
+    leftButton.addEventListener('click', cancelButton);
+    rightButton.removeEventListener('click', saveButton);
+    rightButton.addEventListener('click', nextButton);
+  };
+  const nextButton = () => {
+    handleToggleCard();
+    console.log('nextclick');
+    setTimeout(() => {
+      leftButton.id = 'btn-back';
+      leftButton.innerText = 'Back';
+      rightButton.id = 'btn-save';
+      rightButton.innerText = 'Save';
+    }, 250);
+    leftButton.removeEventListener('click', cancelButton);
+    leftButton.addEventListener('click', backButton);
+    rightButton.removeEventListener('click', nextButton);
+    rightButton.addEventListener('click', saveButton);
+  };
+  const saveButton = () => {
+    console.log('saveclick');
+  };
 
-  card.innerHTML = template.trim();
-  card.addEventListener('click', handleToggleCard);
-  const text = card.querySelector('.text');
-  text.innerText = params.front;
+  const handleToggleCard = () => {
+    state = { ...state, isFront: !state.isFront };
 
-  return card;
+    if (addCard.querySelector('.flip')) {
+      addCard.querySelector('.flipper').classList.toggle('flip');
+      addCard.querySelector('.flipper').classList.toggle('flipped');
+    }
+
+    addCard.querySelector('.flipper').classList.toggle('flip');
+
+    const list = addCard.querySelectorAll('.fading');
+    for (const element of list) {
+      if (element.classList.contains('fade')) {
+        element.classList.toggle('fade');
+        element.classList.toggle('faded');
+      }
+
+      element.classList.toggle('fade');
+    }
+  };
+
+  const addCard = document.createElement('div');
+  addCard.classList.add('card-wrapper');
+
+  const flipperDiv = document.createElement('div');
+  flipperDiv.classList.add('flipper', 'card-front');
+  addCard.append(flipperDiv);
+
+  const textInput = document.createElement('input');
+  textInput.classList.add('new-value', 'fading');
+  addCard.append(textInput);
+
+  const buttonWrapper = document.createElement('div');
+  buttonWrapper.classList.add('button-wrapper');
+  addCard.append(buttonWrapper);
+
+  const leftButton = document.createElement('button');
+
+  const rightButton = document.createElement('button');
+
+  if (state.isFront) {
+    leftButton.classList.add('btn-left', 'fading');
+    leftButton.id = 'btn-cancel';
+    leftButton.innerText = 'Cancel';
+    rightButton.classList.add('btn-right', 'fading');
+    rightButton.id = 'btn-next';
+    rightButton.innerText = 'Next';
+  }
+
+  buttonWrapper.append(leftButton);
+  buttonWrapper.append(rightButton);
+
+  leftButton.addEventListener('click', cancelButton);
+  rightButton.addEventListener('click', nextButton);
+
+  return addCard;
 };

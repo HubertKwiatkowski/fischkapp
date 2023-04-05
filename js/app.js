@@ -3,31 +3,90 @@ import { getCardComponent, createNewCardComponent } from './ui/card.js';
 import { addCard } from './data/actions.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Example of how we can create app state responsible for holding data
+  // display cards
+  // temporary show 2 fixed cards
+
   let appState = createState();
 
-  // Example of how we can create UI component using reusable function
-  const newCardData = { front: 'Good morning', back: 'Dzień dobry' };
+  const cardData = { front: 'Good morning', back: 'Dzień dobry' };
+  const secondCardData = { front: 'bad morning', back: 'kiepski poranek' };
 
-  const card = getCardComponent(newCardData);
-
-  // Example of how we can add card to our state
-  const updatedAppState = addCard(appState, newCardData);
-  appState = updatedAppState;
-  card.getElementsByClassName('text').innerHTML = newCardData.front;
+  const card = getCardComponent(cardData);
+  const secondCard = getCardComponent(secondCardData);
+  const addNewCard = createNewCardComponent();
+  const newCardData = { front: '', back: '' };
 
   const cardList = document.getElementById('card-list');
 
-  // Example of how to display created card in our UI
-  // TODO - delay text change to mach flipping
   cardList.append(card);
+  cardList.append(secondCard);
 
-  const cardCountState = appState.flashcards.length;
+  // add new card
 
-  const cardCounter = document.getElementById('card-counter');
-  const counter = document.createTextNode(cardCountState);
-  const getCardTotalNumber = () => {
-    cardCounter.appendChild(counter);
+  const addNewCardButton = document.getElementById('add-card-button');
+
+  const addACard = () => {
+    while (cardList.firstChild) cardList.firstChild.remove();
+    cardList.append(addNewCard);
+    const leftButton = addNewCard.querySelector('.btn-left');
+    const rightButton = addNewCard.querySelector('.btn-right');
+
+    const cancelButton = () => {
+      while (cardList.firstChild) cardList.firstChild.remove();
+      cardList.append(card);
+      cardList.append(secondCard);
+    };
+
+    const backButton = () => {
+      leftButton.addEventListener('click', cancelButton);
+      rightButton.addEventListener('click', nextButton);
+    };
+
+    const nextButton = () => {
+      leftButton.removeEventListener('click', cancelButton);
+      leftButton.addEventListener('click', backButton);
+      rightButton.removeEventListener('click', nextButton);
+      rightButton.addEventListener('click', saveButton);
+      const frontWord = addNewCard.querySelector('.new-value').value;
+      addNewCard.querySelector('.new-value').value = '';
+      console.log(frontWord);
+      newCardData.front = frontWord;
+    };
+
+    const saveButton = () => {
+      const backWord = addNewCard.querySelector('.new-value').value;
+      while (cardList.firstChild) cardList.firstChild.remove();
+
+      cardList.append(card);
+      cardList.append(secondCard);
+      console.log(backWord);
+      newCardData.back = backWord;
+      console.log(newCardData);
+      const updatedAppState = addCard(appState, newCardData);
+      appState = updatedAppState;
+      generateCounter();
+    };
+
+    leftButton.addEventListener('click', cancelButton);
+    rightButton.addEventListener('click', nextButton);
   };
-  getCardTotalNumber();
+
+  addNewCardButton.addEventListener('click', addACard);
+
+  // count total cards
+
+  const generateCounter = () => {
+    const cardCountState = appState.flashcards.length;
+
+    const cardCounter = document.getElementById('card-counter');
+    while (cardCounter.firstChild) cardCounter.firstChild.remove();
+
+    const counter = document.createTextNode(cardCountState);
+    const getCardTotalNumber = () => {
+      cardCounter.appendChild(counter);
+    };
+    getCardTotalNumber();
+  };
+
+  generateCounter();
 });
