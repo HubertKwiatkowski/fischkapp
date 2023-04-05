@@ -39,7 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const backButton = () => {
       leftButton.addEventListener('click', cancelButton);
+      leftButton.removeEventListener('click', backButton);
       rightButton.addEventListener('click', nextButton);
+      rightButton.removeEventListener('click', saveButton);
     };
 
     const nextButton = () => {
@@ -49,22 +51,26 @@ document.addEventListener('DOMContentLoaded', () => {
       rightButton.addEventListener('click', saveButton);
       const frontWord = addNewCard.querySelector('.new-value').value;
       addNewCard.querySelector('.new-value').value = '';
-      console.log(frontWord);
       newCardData.front = frontWord;
     };
 
     const saveButton = () => {
       const backWord = addNewCard.querySelector('.new-value').value;
+      console.log(backWord);
       while (cardList.firstChild) cardList.firstChild.remove();
-
       cardList.append(card);
       cardList.append(secondCard);
-      console.log(backWord);
       newCardData.back = backWord;
-      console.log(newCardData);
+      console.log('app state flashcards lenght', appState.flashcards.length);
+
       const updatedAppState = addCard(appState, newCardData);
       appState = updatedAppState;
+      console.log('app state flashcards lenght', appState.flashcards.length);
+
       generateCounter();
+
+      leftButton.removeEventListener('click', backButton);
+      rightButton.removeEventListener('click', saveButton);
     };
 
     leftButton.addEventListener('click', cancelButton);

@@ -60,13 +60,10 @@ export const createNewCardComponent = (params) => {
     isFront: true,
   };
 
-  const cancelButton = () => {
-    console.log('cancelclick');
-  };
+  // const cancelButton = () => {};
 
   const backButton = () => {
     handleToggleCard();
-
     console.log('backclick');
     leftButton.id = 'btn-cancel';
     setTimeout(() => {
@@ -76,27 +73,21 @@ export const createNewCardComponent = (params) => {
       rightButton.innerText = 'Next';
     }, 250);
     leftButton.removeEventListener('click', backButton);
-    leftButton.addEventListener('click', cancelButton);
-    rightButton.removeEventListener('click', saveButton);
     rightButton.addEventListener('click', nextButton);
   };
   const nextButton = () => {
     handleToggleCard();
-    console.log('nextclick');
     setTimeout(() => {
       leftButton.id = 'btn-back';
       leftButton.innerText = 'Back';
       rightButton.id = 'btn-save';
       rightButton.innerText = 'Save';
     }, 250);
-    leftButton.removeEventListener('click', cancelButton);
-    leftButton.addEventListener('click', backButton);
     rightButton.removeEventListener('click', nextButton);
-    rightButton.addEventListener('click', saveButton);
+    leftButton.addEventListener('click', backButton);
   };
-  const saveButton = () => {
-    console.log('saveclick');
-  };
+
+  // const saveButton = () => {};
 
   const handleToggleCard = () => {
     state = { ...state, isFront: !state.isFront };
@@ -150,7 +141,7 @@ export const createNewCardComponent = (params) => {
   buttonWrapper.append(leftButton);
   buttonWrapper.append(rightButton);
 
-  leftButton.addEventListener('click', cancelButton);
+  // leftButton.addEventListener('click', cancelButton);
   rightButton.addEventListener('click', nextButton);
 
   return addCard;
