@@ -60,21 +60,6 @@ export const createNewCardComponent = () => {
     isFront: true,
   };
 
-  // const cancelButton = () => {};
-
-  const backButton = () => {
-    handleToggleCard();
-    leftButton.id = 'btn-cancel';
-    setTimeout(() => {
-      leftButton.id = 'btn-cancel';
-      leftButton.innerText = 'Cancel';
-      rightButton.id = 'btn-next';
-      rightButton.innerText = 'Next';
-    }, 250);
-    leftButton.removeEventListener('click', backButton);
-    rightButton.addEventListener('click', nextButton);
-    while (frontCardInfo.firstChild) frontCardInfo.firstChild.remove();
-  };
   const nextButton = () => {
     if (textInput.value !== '') {
       handleToggleCard();
@@ -84,8 +69,8 @@ export const createNewCardComponent = () => {
         rightButton.id = 'btn-save';
         rightButton.innerText = 'Save';
       }, 250);
-      rightButton.removeEventListener('click', nextButton);
       leftButton.addEventListener('click', backButton);
+      rightButton.removeEventListener('click', nextButton);
       const frontValue = document.createElement('p');
       frontValue.classList.add('front-value');
       const imgWrapper = document.createElement('div');
@@ -99,7 +84,26 @@ export const createNewCardComponent = () => {
     }
   };
 
-  // const saveButton = () => {};
+  const backButton = () => {
+    handleToggleCard();
+    leftButton.id = 'btn-cancel';
+    setTimeout(() => {
+      leftButton.id = 'btn-cancel';
+      leftButton.innerText = 'Cancel';
+      rightButton.id = 'btn-next';
+      rightButton.innerText = 'Next';
+    }, 250);
+    leftButton.removeEventListener('click', backButton);
+    rightButton.addEventListener('click', nextButton);
+    rightButton.removeEventListener('click', saveButton);
+
+    while (frontCardInfo.firstChild) frontCardInfo.firstChild.remove();
+  };
+
+  const saveButton = () => {
+    rightButton.addEventListener('click', nextButton);
+    leftButton.removeEventListener('click', backButton);
+  };
 
   const handleToggleCard = () => {
     state = { ...state, isFront: !state.isFront };

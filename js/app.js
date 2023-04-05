@@ -18,8 +18,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const cardList = document.getElementById('card-list');
 
-  cardList.append(card);
-  cardList.append(secondCard);
+  const fillCardList = () => {
+    while (cardList.firstChild) cardList.firstChild.remove();
+
+    cardList.append(card);
+    cardList.append(secondCard);
+  };
 
   // add new card
 
@@ -35,9 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const rightButton = addNewCard.querySelector('.btn-right');
 
     const cancelButton = () => {
-      while (cardList.firstChild) cardList.firstChild.remove();
-      cardList.append(card);
-      cardList.append(secondCard);
+      fillCardList();
       if (!newCardData.front) addNewCard.querySelector('.new-value').value = '';
     };
 
@@ -76,9 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const updatedAppState = addCard(appState, newCardData);
         appState = updatedAppState;
 
-        while (cardList.firstChild) cardList.firstChild.remove();
-        cardList.append(card);
-        cardList.append(secondCard);
+        fillCardList();
         addNewCard.querySelector('.new-value').value = '';
         leftButton.removeEventListener('click', backButton);
         rightButton.removeEventListener('click', saveButton);
@@ -108,4 +108,5 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   generateCounter();
+  fillCardList();
 });
