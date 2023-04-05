@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const card = getCardComponent(cardData);
   const secondCard = getCardComponent(secondCardData);
-  const addNewCard = createNewCardComponent();
+
   const newCardData = { front: '', back: '' };
 
   const cardList = document.getElementById('card-list');
@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const addNewCardButton = document.getElementById('add-card-button');
 
   const addACard = () => {
+    const addNewCard = createNewCardComponent();
     while (cardList.firstChild) cardList.firstChild.remove();
     cardList.append(addNewCard);
     const leftButton = addNewCard.querySelector('.btn-left');
@@ -35,6 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
       while (cardList.firstChild) cardList.firstChild.remove();
       cardList.append(card);
       cardList.append(secondCard);
+      addNewCard.querySelector('.new-value').value = '';
+      console.log(newCardData);
     };
 
     const backButton = () => {
@@ -42,6 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
       leftButton.removeEventListener('click', backButton);
       rightButton.addEventListener('click', nextButton);
       rightButton.removeEventListener('click', saveButton);
+      newCardData.back = addNewCard.querySelector('.new-value').value;
+      if (newCardData.front)
+        addNewCard.querySelector('.new-value').value = newCardData.front;
+      console.log(newCardData);
     };
 
     const nextButton = () => {
@@ -49,28 +56,28 @@ document.addEventListener('DOMContentLoaded', () => {
       leftButton.addEventListener('click', backButton);
       rightButton.removeEventListener('click', nextButton);
       rightButton.addEventListener('click', saveButton);
-      const frontWord = addNewCard.querySelector('.new-value').value;
       addNewCard.querySelector('.new-value').value = '';
-      newCardData.front = frontWord;
+      if (newCardData.back)
+        addNewCard.querySelector('.new-value').value = newCardData.back;
+      newCardData.front = addNewCard.querySelector('.new-value').value;
+      console.log(newCardData);
     };
 
     const saveButton = () => {
+      console.log(newCardData);
       const backWord = addNewCard.querySelector('.new-value').value;
       console.log(backWord);
       while (cardList.firstChild) cardList.firstChild.remove();
       cardList.append(card);
       cardList.append(secondCard);
-      newCardData.back = backWord;
-      console.log('app state flashcards lenght', appState.flashcards.length);
 
       const updatedAppState = addCard(appState, newCardData);
       appState = updatedAppState;
-      console.log('app state flashcards lenght', appState.flashcards.length);
 
-      generateCounter();
-
+      addNewCard.querySelector('.new-value').value = '';
       leftButton.removeEventListener('click', backButton);
       rightButton.removeEventListener('click', saveButton);
+      generateCounter();
     };
 
     leftButton.addEventListener('click', cancelButton);

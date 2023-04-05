@@ -55,7 +55,7 @@ export const getCardComponent = (params) => {
   return card;
 };
 
-export const createNewCardComponent = (params) => {
+export const createNewCardComponent = () => {
   let state = {
     isFront: true,
   };
@@ -64,7 +64,6 @@ export const createNewCardComponent = (params) => {
 
   const backButton = () => {
     handleToggleCard();
-    console.log('backclick');
     leftButton.id = 'btn-cancel';
     setTimeout(() => {
       leftButton.id = 'btn-cancel';
