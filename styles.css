@@ -267,7 +267,6 @@ body {
   font-size: 14px;
   line-height: 18px;
   font-style: normal;
-
   width: 110px;
   height: 34px;
   border-radius: 30px;
@@ -286,12 +285,33 @@ body {
   color: #fff;
   font-weight: 600;
 }
-/* styles to sort out during future tasks */
 
-.btn-delete {
-  cursor: pointer;
+.front-card-info {
+  position: relative;
 }
 
+.front-card-info p {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  color: #98a3cf;
+  transform: none;
+  z-index: 1;
+}
+
+.btn-delete {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  z-index: 1;
+}
+/* styles to sort out during future tasks */
+/* 
 .edit-value {
   width: 310px;
   font-style: normal;
@@ -397,26 +417,6 @@ body {
   color: #1c1c1c;
 }
 
-.front-card-info {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.front-card-info p {
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 14px;
-  color: #98a3cf;
-  margin-left: 16px;
-}
-
-.btn-delete {
-  cursor: pointer;
-}
-
 .edit-value {
   margin-top: 14px;
 }
@@ -429,4 +429,4 @@ body {
   background: red;
   padding: 36px;
   cursor: pointer;
-}
+} */

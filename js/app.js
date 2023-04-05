@@ -50,6 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
       addNewCard.querySelector('.new-value').value = '';
       if (newCardData.back)
         addNewCard.querySelector('.new-value').value = newCardData.back;
+      const frontCardInfo = addNewCard.querySelector('.front-value');
+      frontCardInfo.innerText = newCardData.front;
     };
 
     const backButton = () => {

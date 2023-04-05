@@ -73,6 +73,7 @@ export const createNewCardComponent = () => {
     }, 250);
     leftButton.removeEventListener('click', backButton);
     rightButton.addEventListener('click', nextButton);
+    while (frontCardInfo.firstChild) frontCardInfo.firstChild.remove();
   };
   const nextButton = () => {
     handleToggleCard();
@@ -84,6 +85,16 @@ export const createNewCardComponent = () => {
     }, 250);
     rightButton.removeEventListener('click', nextButton);
     leftButton.addEventListener('click', backButton);
+    const frontValue = document.createElement('p');
+    frontValue.classList.add('front-value');
+    const imgWrapper = document.createElement('div');
+    imgWrapper.classList.add('btn-delete');
+    const iconImg = document.createElement('img');
+    iconImg.src = 'src/icon/trash-icon.svg';
+    iconImg.alt = 'trash-icon';
+    imgWrapper.append(iconImg);
+    frontCardInfo.append(frontValue);
+    frontCardInfo.append(imgWrapper);
   };
 
   // const saveButton = () => {};
@@ -116,6 +127,10 @@ export const createNewCardComponent = () => {
   flipperDiv.classList.add('flipper', 'card-front');
   addCard.append(flipperDiv);
 
+  const frontCardInfo = document.createElement('div');
+  frontCardInfo.classList.add('front-card-info');
+  addCard.append(frontCardInfo);
+
   const textInput = document.createElement('input');
   textInput.classList.add('new-value', 'fading');
   addCard.append(textInput);
@@ -140,7 +155,6 @@ export const createNewCardComponent = () => {
   buttonWrapper.append(leftButton);
   buttonWrapper.append(rightButton);
 
-  // leftButton.addEventListener('click', cancelButton);
   rightButton.addEventListener('click', nextButton);
 
   return addCard;
