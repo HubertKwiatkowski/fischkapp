@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const card = getCardComponent(cardData);
   const secondCard = getCardComponent(secondCardData);
 
-  const newCardData = { front: '', back: '' };
+  let newCardData = { front: '', back: '' };
 
   const cardList = document.getElementById('card-list');
 
@@ -27,6 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const addACard = () => {
     const addNewCard = createNewCardComponent();
+    newCardData = { front: '', back: '' };
+
     while (cardList.firstChild) cardList.firstChild.remove();
     cardList.append(addNewCard);
     const leftButton = addNewCard.querySelector('.btn-left');
@@ -36,8 +38,18 @@ document.addEventListener('DOMContentLoaded', () => {
       while (cardList.firstChild) cardList.firstChild.remove();
       cardList.append(card);
       cardList.append(secondCard);
+      if (!newCardData.front) addNewCard.querySelector('.new-value').value = '';
+    };
+
+    const nextButton = () => {
+      leftButton.removeEventListener('click', cancelButton);
+      leftButton.addEventListener('click', backButton);
+      rightButton.removeEventListener('click', nextButton);
+      rightButton.addEventListener('click', saveButton);
+      newCardData.front = addNewCard.querySelector('.new-value').value;
       addNewCard.querySelector('.new-value').value = '';
-      console.log(newCardData);
+      if (newCardData.back)
+        addNewCard.querySelector('.new-value').value = newCardData.back;
     };
 
     const backButton = () => {
@@ -48,32 +60,17 @@ document.addEventListener('DOMContentLoaded', () => {
       newCardData.back = addNewCard.querySelector('.new-value').value;
       if (newCardData.front)
         addNewCard.querySelector('.new-value').value = newCardData.front;
-      console.log(newCardData);
-    };
-
-    const nextButton = () => {
-      leftButton.removeEventListener('click', cancelButton);
-      leftButton.addEventListener('click', backButton);
-      rightButton.removeEventListener('click', nextButton);
-      rightButton.addEventListener('click', saveButton);
-      addNewCard.querySelector('.new-value').value = '';
-      if (newCardData.back)
-        addNewCard.querySelector('.new-value').value = newCardData.back;
-      newCardData.front = addNewCard.querySelector('.new-value').value;
-      console.log(newCardData);
     };
 
     const saveButton = () => {
-      console.log(newCardData);
-      const backWord = addNewCard.querySelector('.new-value').value;
-      console.log(backWord);
-      while (cardList.firstChild) cardList.firstChild.remove();
-      cardList.append(card);
-      cardList.append(secondCard);
+      newCardData.back = addNewCard.querySelector('.new-value').value;
 
       const updatedAppState = addCard(appState, newCardData);
       appState = updatedAppState;
 
+      while (cardList.firstChild) cardList.firstChild.remove();
+      cardList.append(card);
+      cardList.append(secondCard);
       addNewCard.querySelector('.new-value').value = '';
       leftButton.removeEventListener('click', backButton);
       rightButton.removeEventListener('click', saveButton);
