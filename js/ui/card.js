@@ -76,25 +76,27 @@ export const createNewCardComponent = () => {
     while (frontCardInfo.firstChild) frontCardInfo.firstChild.remove();
   };
   const nextButton = () => {
-    handleToggleCard();
-    setTimeout(() => {
-      leftButton.id = 'btn-back';
-      leftButton.innerText = 'Back';
-      rightButton.id = 'btn-save';
-      rightButton.innerText = 'Save';
-    }, 250);
-    rightButton.removeEventListener('click', nextButton);
-    leftButton.addEventListener('click', backButton);
-    const frontValue = document.createElement('p');
-    frontValue.classList.add('front-value');
-    const imgWrapper = document.createElement('div');
-    imgWrapper.classList.add('btn-delete');
-    const iconImg = document.createElement('img');
-    iconImg.src = 'src/icon/trash-icon.svg';
-    iconImg.alt = 'trash-icon';
-    imgWrapper.append(iconImg);
-    frontCardInfo.append(frontValue);
-    frontCardInfo.append(imgWrapper);
+    if (textInput.value !== '') {
+      handleToggleCard();
+      setTimeout(() => {
+        leftButton.id = 'btn-back';
+        leftButton.innerText = 'Back';
+        rightButton.id = 'btn-save';
+        rightButton.innerText = 'Save';
+      }, 250);
+      rightButton.removeEventListener('click', nextButton);
+      leftButton.addEventListener('click', backButton);
+      const frontValue = document.createElement('p');
+      frontValue.classList.add('front-value');
+      const imgWrapper = document.createElement('div');
+      imgWrapper.classList.add('btn-delete');
+      const iconImg = document.createElement('img');
+      iconImg.src = 'src/icon/trash-icon.svg';
+      iconImg.alt = 'trash-icon';
+      imgWrapper.append(iconImg);
+      frontCardInfo.append(frontValue);
+      frontCardInfo.append(imgWrapper);
+    }
   };
 
   // const saveButton = () => {};

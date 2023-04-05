@@ -42,16 +42,21 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const nextButton = () => {
-      leftButton.removeEventListener('click', cancelButton);
-      leftButton.addEventListener('click', backButton);
-      rightButton.removeEventListener('click', nextButton);
-      rightButton.addEventListener('click', saveButton);
-      newCardData.front = addNewCard.querySelector('.new-value').value;
-      addNewCard.querySelector('.new-value').value = '';
-      if (newCardData.back)
-        addNewCard.querySelector('.new-value').value = newCardData.back;
-      const frontCardInfo = addNewCard.querySelector('.front-value');
-      frontCardInfo.innerText = newCardData.front;
+      if (addNewCard.querySelector('.new-value').value !== '') {
+        leftButton.removeEventListener('click', cancelButton);
+        leftButton.addEventListener('click', backButton);
+        rightButton.removeEventListener('click', nextButton);
+        rightButton.addEventListener('click', saveButton);
+        newCardData.front = addNewCard.querySelector('.new-value').value;
+        addNewCard.querySelector('.new-value').value = '';
+        if (newCardData.back)
+          addNewCard.querySelector('.new-value').value = newCardData.back;
+        const frontCardInfo = addNewCard.querySelector('.front-value');
+        frontCardInfo.innerText = newCardData.front;
+
+        const deleteButton = addNewCard.querySelector('.btn-delete');
+        deleteButton.addEventListener('click', cancelButton);
+      }
     };
 
     const backButton = () => {
@@ -65,18 +70,20 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const saveButton = () => {
-      newCardData.back = addNewCard.querySelector('.new-value').value;
+      if (addNewCard.querySelector('.new-value').value) {
+        newCardData.back = addNewCard.querySelector('.new-value').value;
 
-      const updatedAppState = addCard(appState, newCardData);
-      appState = updatedAppState;
+        const updatedAppState = addCard(appState, newCardData);
+        appState = updatedAppState;
 
-      while (cardList.firstChild) cardList.firstChild.remove();
-      cardList.append(card);
-      cardList.append(secondCard);
-      addNewCard.querySelector('.new-value').value = '';
-      leftButton.removeEventListener('click', backButton);
-      rightButton.removeEventListener('click', saveButton);
-      generateCounter();
+        while (cardList.firstChild) cardList.firstChild.remove();
+        cardList.append(card);
+        cardList.append(secondCard);
+        addNewCard.querySelector('.new-value').value = '';
+        leftButton.removeEventListener('click', backButton);
+        rightButton.removeEventListener('click', saveButton);
+        generateCounter();
+      }
     };
 
     leftButton.addEventListener('click', cancelButton);
