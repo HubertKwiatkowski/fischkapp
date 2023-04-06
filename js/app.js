@@ -1,5 +1,6 @@
 import { createState } from './data/createState.js';
-import { getCardComponent, createNewCardComponent } from './ui/card.js';
+import { getCardComponent } from './ui/card.js';
+import { getNewCardComponent } from './ui/newCard.js';
 import { addCard } from './data/actions.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -30,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const addNewCardButton = document.getElementById('add-card-button');
 
   const addACard = () => {
-    const addNewCard = createNewCardComponent();
+    const addNewCard = getNewCardComponent();
     newCardData = { front: '', back: '' };
 
     while (cardList.firstChild) cardList.firstChild.remove();
