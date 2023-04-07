@@ -1,33 +1,24 @@
 import { createState } from './data/createState.js';
-import { getCardComponent, createNewCardComponent } from './ui/card.js';
-import { addCard } from './data/actions.js';
+import { getNewCardComponent } from './ui/newCardComponent.js';
+import { getNewCard } from './ui/newCard.js';
+import { getCardList } from './ui/cardList.js';
+import { generateCounter } from './ui/cardCounter.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Example of how we can create app state responsible for holding data
   let appState = createState();
+  const cardsAmount = appState.flashcards.length;
 
-  // Example of how we can create UI component using reusable function
-  const newCardData = { front: 'Good morning', back: 'Dzień dobry' };
+  // add new card
 
-  const card = getCardComponent(newCardData);
+  const addNewCardButton = document.getElementById('add-card-button');
 
-  // Example of how we can add card to our state
-  const updatedAppState = addCard(appState, newCardData);
-  appState = updatedAppState;
-  card.getElementsByClassName('text').innerHTML = newCardData.front;
-
-  const cardList = document.getElementById('card-list');
-
-  // Example of how to display created card in our UI
-  // TODO - delay text change to mach flipping
-  cardList.append(card);
-
-  const cardCountState = appState.flashcards.length;
-
-  const cardCounter = document.getElementById('card-counter');
-  const counter = document.createTextNode(cardCountState);
-  const getCardTotalNumber = () => {
-    cardCounter.appendChild(counter);
+  const createNewCard = () => {
+    getNewCardComponent();
+    getNewCard(appState);
   };
-  getCardTotalNumber();
+
+  addNewCardButton.addEventListener('click', createNewCard);
+
+  generateCounter(cardsAmount);
+  getCardList(appState);
 });

@@ -55,6 +55,23 @@ body {
   color: #98a3cf;
 }
 
+.add-card-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: #98a3cf;
+  box-shadow: 0 20px 34px rgba(152, 163, 207, 0.3);
+  margin-right: 16px;
+}
+
+.add-card-button:hover {
+  cursor: pointer;
+}
+
 .card-wrapper {
   position: relative;
   height: 147px;
@@ -63,13 +80,18 @@ body {
 }
 
 .card-front {
-  position: absolute;
   height: 147px;
   margin: 12px 16px;
   background: #ffffff;
   border-radius: 16px;
   filter: drop-shadow(0px 20px 34px rgba(152, 163, 207, 0.3));
   perspective: 1000px;
+}
+
+.flipper {
+  width: 100%;
+  margin: 0;
+  position: absolute;
 }
 
 .flip {
@@ -188,8 +210,10 @@ body {
   }
 }
 
-.edit-icon {
-  margin-right: 16px;
+.card-icon {
+  position: absolute;
+  top: 0;
+  right: 5px;
   cursor: pointer;
 }
 
@@ -208,25 +232,86 @@ body {
   color: #1c1c1c;
 }
 
-/* styles to sort out during future tasks */
+.new-value {
+  position: absolute;
+  width: 310px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding-inline: 15px;
+  padding-bottom: 8px;
+  border: none;
+  border-bottom: 1px solid #98a3cf;
+}
+
+.new-value:focus {
+  outline: none;
+}
+
+.button-wrapper {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.button-wrapper button {
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 18px;
+  font-style: normal;
+  width: 110px;
+  height: 34px;
+  border-radius: 30px;
+}
+
+.btn-left {
+  background: #ffffff;
+  border: 1px solid #98a3cf;
+  color: #98a3cf;
+  font-weight: 600;
+}
+
+.btn-right {
+  background: #98a3cf;
+  border: none;
+  color: #fff;
+  font-weight: 600;
+}
+
+.front-card-info {
+  position: relative;
+}
+
+.front-card-info p {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  color: #98a3cf;
+  transform: none;
+  z-index: 1;
+}
 
 .btn-delete {
+  position: absolute;
+  top: 0;
+  right: 0;
   cursor: pointer;
+  z-index: 1;
 }
-
-.add-card-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border: none;
-  border-radius: 50%;
-  background: #98a3cf;
-  box-shadow: 0 20px 34px rgba(152, 163, 207, 0.3);
-  margin-right: 16px;
-}
-
+/* styles to sort out during future tasks */
+/* 
 .edit-value {
   width: 310px;
   font-style: normal;
@@ -276,10 +361,6 @@ body {
 
 .edit-value:focus {
   outline: none;
-}
-
-.card-front {
-  position: relative;
 }
 
 .card-counter {
@@ -335,79 +416,6 @@ body {
   text-align: center;
   color: #1c1c1c;
 }
-.new-value {
-  width: 310px;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 19px;
-  margin: 55px 16px 14px;
-  padding-inline: 15px;
-  padding-bottom: 8px;
-  border: none;
-  border-bottom: 1px solid #98a3cf;
-}
-
-.new-value:focus {
-  outline: none;
-}
-
-.button-wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.button-wrapper button {
-  width: 110px;
-  height: 34px;
-  border-radius: 30px;
-  margin: 0 16px 16px;
-}
-
-.btn-cancel,
-.btn-back {
-  cursor: pointer;
-  background: #ffffff;
-  border: 1px solid #98a3cf;
-  color: #98a3cf;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 18px;
-}
-
-.btn-next,
-.btn-save {
-  cursor: pointer;
-  background: #98a3cf;
-  border: none;
-  color: #fff;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 18px;
-}
-
-.front-card-info {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.front-card-info p {
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 14px;
-  color: #98a3cf;
-  margin-left: 16px;
-}
-
-.btn-delete {
-  cursor: pointer;
-}
 
 .edit-value {
   margin-top: 14px;
@@ -421,4 +429,4 @@ body {
   background: red;
   padding: 36px;
   cursor: pointer;
-}
+} */
