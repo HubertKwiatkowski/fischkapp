@@ -1,4 +1,7 @@
 export const createState = () => {
+  const onSave = () => {
+    console.log(flashcards);
+  };
   return {
     flashcards: [
       { front: 'mlot', back: 'hammer' },

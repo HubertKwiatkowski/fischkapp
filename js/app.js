@@ -6,6 +6,7 @@ import { generateCounter } from './ui/cardCounter.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   let appState = createState();
+  const cardsAmount = appState.flashcards.length;
 
   // add new card
 
@@ -13,11 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const createNewCard = () => {
     getNewCardComponent();
-    getNewCard();
+    getNewCard(appState);
   };
 
   addNewCardButton.addEventListener('click', createNewCard);
 
-  generateCounter(appState);
-  getCardList();
+  generateCounter(cardsAmount);
+  getCardList(appState);
 });
