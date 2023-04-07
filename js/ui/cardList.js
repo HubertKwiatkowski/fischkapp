@@ -2,8 +2,14 @@ import { getCardComponent } from './cardComponent.js';
 
 export const getCardList = (params) => {
   const cardList = document.getElementById('card-list');
-  const card = getCardComponent(params.flashcards[0]);
-
+  console.log(params.flashcards);
+  console.log(typeof params.flashcards);
   while (cardList.firstChild) cardList.firstChild.remove();
-  cardList.append(card);
+  const cardsAmount = params.flashcards.length;
+
+  params.flashcards.forEach((flashcard) => {
+    console.log(flashcard);
+    const card = getCardComponent(flashcard);
+    cardList.append(card);
+  });
 };
