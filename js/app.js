@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const createNewCard = () => {
     getNewCardComponent();
-    getNewCard(appState);
+    getNewCard();
   };
 
   addNewCardButton.addEventListener('click', createNewCard);

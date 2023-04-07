@@ -1,15 +1,17 @@
 import { getCardList } from './cardList.js';
 import { addCard } from '../data/actions.js';
 import { generateCounter } from './cardCounter.js';
+import { createState } from '../data/createState.js';
 
-export const getNewCard = (params) => {
+let appState = createState();
+
+export const getNewCard = () => {
   const newCardData = { front: '', back: '' };
-  console.log(params);
   const leftButton = document.querySelector('.btn-left');
   const rightButton = document.querySelector('.btn-right');
 
   const cancelButton = () => {
-    if (!newCardData.front) addNewCard.querySelector('.new-value').value = '';
+    if (!newCardData.front) document.querySelector('.new-value').value = '';
     getCardList();
   };
 
@@ -45,15 +47,14 @@ export const getNewCard = (params) => {
     if (document.querySelector('.new-value').value) {
       newCardData.back = document.querySelector('.new-value').value;
 
-      const updatedAppState = addCard(params, newCardData);
-      params = updatedAppState;
-      console.log(params);
+      const updatedAppState = addCard(appState, newCardData);
+      appState = updatedAppState;
 
       document.querySelector('.new-value').value = '';
       leftButton.removeEventListener('click', backButton);
       rightButton.removeEventListener('click', saveButton);
       getCardList();
-      generateCounter(params);
+      generateCounter(appState);
     }
   };
 
