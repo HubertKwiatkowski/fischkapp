@@ -37,7 +37,7 @@ export const getCardComponent = (params) => {
   card.append(flipperDiv);
 
   const iconWrapper = document.createElement('div');
-  iconWrapper.classList.add('fading', 'card-icon');
+  iconWrapper.classList.add('fading', 'edit-icon');
 
   const iconImg = document.createElement('img');
   card.append(iconWrapper);

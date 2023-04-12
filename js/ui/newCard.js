@@ -2,14 +2,21 @@ import { getCardList } from './cardList.js';
 import { addCard } from '../data/actions.js';
 import { generateCounter } from './cardCounter.js';
 
-export const getNewCard = (params) => {
-  const newCardData = { front: '', back: '' };
+export const getNewCard = (appState, index) => {
+  console.log(appState, index);
+
+  let newCardData = { front: '', back: '' };
   const leftButton = document.querySelector('.btn-left');
   const rightButton = document.querySelector('.btn-right');
+  const frontValue = document.querySelector('.new-value');
+  if (appState) {
+    newCardData = appState.flashcards[index];
+    frontValue.value = newCardData.front;
+  }
 
   const cancelButton = () => {
     if (!newCardData.front) document.querySelector('.new-value').value = '';
-    getCardList(params);
+    getCardList(appState);
   };
 
   const nextButton = () => {
@@ -43,16 +50,16 @@ export const getNewCard = (params) => {
   const saveButton = () => {
     if (document.querySelector('.new-value').value) {
       newCardData.back = document.querySelector('.new-value').value;
-      const updatedParams = addCard(params, newCardData);
-      params.flashcards = updatedParams.flashcards;
+      const updatedappState = addCard(appState, newCardData);
+      appState.flashcards = updatedappState.flashcards;
 
       document.querySelector('.new-value').value = '';
       leftButton.removeEventListener('click', backButton);
       rightButton.removeEventListener('click', saveButton);
 
-      const cardsAmount = params.flashcards.length;
+      const cardsAmount = appState.flashcards.length;
 
-      getCardList(params);
+      getCardList(appState);
       generateCounter(cardsAmount);
     }
   };
