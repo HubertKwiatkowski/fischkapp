@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
     icon.addEventListener('click', function () {
       const card = icon.closest('.card-wrapper');
       const index = card.id;
-      const cardToEdit = appState.flashcards[index];
       getNewCardComponent();
       getNewCard(appState, index);
     });

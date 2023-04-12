@@ -50,8 +50,10 @@ export const getNewCard = (appState, index) => {
   const saveButton = () => {
     if (document.querySelector('.new-value').value) {
       newCardData.back = document.querySelector('.new-value').value;
-      const updatedappState = addCard(appState, newCardData);
-      appState.flashcards = updatedappState.flashcards;
+      if (index === undefined) {
+        const updatedappState = addCard(appState, newCardData);
+        appState.flashcards = updatedappState.flashcards;
+      }
 
       document.querySelector('.new-value').value = '';
       leftButton.removeEventListener('click', backButton);
