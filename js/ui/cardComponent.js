@@ -5,6 +5,8 @@ export const getCardComponent = (params) => {
 
   const handleToggleCard = () => {
     state = { ...state, isFront: !state.isFront };
+    card.classList.toggle('front');
+    card.classList.toggle('back');
 
     if (card.querySelector('.flip')) {
       card.querySelector('.flipper').classList.toggle('flip');
@@ -30,7 +32,7 @@ export const getCardComponent = (params) => {
   };
 
   const card = document.createElement('div');
-  card.classList.add('card-wrapper');
+  card.classList.add('front', 'card-wrapper');
 
   const flipperDiv = document.createElement('div');
   flipperDiv.classList.add('flipper', 'card-front');
@@ -47,6 +49,7 @@ export const getCardComponent = (params) => {
 
   const text = document.createElement('p');
   card.append(text);
+  if (state.isFront) text.id = 'front';
   text.classList.add('fading', 'text');
 
   card.addEventListener('click', handleToggleCard);
