@@ -10,7 +10,6 @@ export const getCardEdit = (isFront, index, params) => {
   const dataToChange = document.querySelector('.edit-value');
   const currentCard = params.flashcards[index];
   let readValue = '';
-  console.log(params.flashcards[index].front);
 
   state.isFront
     ? (readValue = currentCard.front)

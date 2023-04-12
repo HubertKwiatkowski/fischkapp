@@ -5,10 +5,6 @@ export const getCardEditComponent = () => {
   const editedCard = document.createElement('div');
   editedCard.classList.add('card-wrapper');
 
-  const flipperDiv = document.createElement('div');
-  flipperDiv.classList.add('flipper', 'card-front');
-  editedCard.append(flipperDiv);
-
   const frontCardInfo = document.createElement('div');
   frontCardInfo.classList.add('front-card-info');
   editedCard.append(frontCardInfo);
