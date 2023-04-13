@@ -1,10 +1,14 @@
-export const getCardComponent = (params) => {
+import { getCardEditComponent } from './cardEditComponent.js';
+
+export const getCardComponent = (flashcard, index, cardList, appState) => {
   let state = {
     isFront: true,
   };
 
   const handleToggleCard = () => {
     state = { ...state, isFront: !state.isFront };
+    card.classList.toggle('front');
+    card.classList.toggle('back');
 
     if (card.querySelector('.flip')) {
       card.querySelector('.flipper').classList.toggle('flip');
@@ -24,33 +28,38 @@ export const getCardComponent = (params) => {
     }
     setTimeout(() => {
       card.querySelector('.text').innerText = state.isFront
-        ? params.front
-        : params.back;
+        ? flashcard.front
+        : flashcard.back;
     }, 250);
   };
 
   const card = document.createElement('div');
-  card.classList.add('card-wrapper');
+  card.classList.add('front', 'card-wrapper');
+  card.id = index;
 
   const flipperDiv = document.createElement('div');
   flipperDiv.classList.add('flipper', 'card-front');
   card.append(flipperDiv);
 
   const iconWrapper = document.createElement('div');
-  iconWrapper.classList.add('fading', 'card-icon');
+  iconWrapper.classList.add('fading', 'edit-icon');
 
   const iconImg = document.createElement('img');
   card.append(iconWrapper);
   iconImg.src = 'src/icon/edit-icon.svg';
   iconImg.alt = 'edit-icon';
+  iconImg.addEventListener('click', function () {
+    getCardEditComponent(state.isFront, appState, cardList, flashcard);
+  });
   iconWrapper.append(iconImg);
 
   const text = document.createElement('p');
   card.append(text);
+  if (state.isFront) text.id = 'front';
   text.classList.add('fading', 'text');
 
   card.addEventListener('click', handleToggleCard);
-  text.innerText = params.front;
+  text.innerText = flashcard.front;
 
   return card;
 };

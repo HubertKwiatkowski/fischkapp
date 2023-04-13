@@ -1,11 +1,10 @@
 import { getCardComponent } from './cardComponent.js';
 
-export const getCardList = (params) => {
-  const cardList = document.getElementById('card-list');
+export const getCardList = (appState, cardList) => {
   while (cardList.firstChild) cardList.firstChild.remove();
 
-  params.flashcards.forEach((flashcard) => {
-    const card = getCardComponent(flashcard);
+  appState.flashcards.forEach((flashcard, index) => {
+    const card = getCardComponent(flashcard, index, cardList, appState);
     cardList.append(card);
   });
 };
