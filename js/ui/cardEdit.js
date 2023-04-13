@@ -1,5 +1,6 @@
 import { getCardList } from './cardList.js';
 import { generateCounter } from './cardCounter.js';
+import { removeCard } from '../data/actions.js';
 
 export const getCardEdit = (
   isFront,
@@ -8,7 +9,9 @@ export const getCardEdit = (
   cardList,
   leftButton,
   rightButton,
-  textInput
+  textInput,
+  removeButtonWrapper,
+  index
 ) => {
   let state = {
     isFront: isFront,
@@ -39,6 +42,14 @@ export const getCardEdit = (
     generateCounter(cardsAmount);
   };
 
+  const trashIcon = () => {
+    appState = removeCard(appState, index);
+    getCardList(appState, cardList);
+    const cardsAmount = appState.flashcards.length;
+    generateCounter(cardsAmount);
+  };
+
   leftButton.addEventListener('click', cancelButton);
   rightButton.addEventListener('click', saveButton);
+  removeButtonWrapper.addEventListener('click', trashIcon);
 };

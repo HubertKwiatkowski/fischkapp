@@ -1,8 +1,8 @@
-export const generateCounter = (params) => {
+export const generateCounter = (cardsAmount) => {
   const cardCounter = document.getElementById('card-counter');
   while (cardCounter.firstChild) cardCounter.firstChild.remove();
 
-  const counter = document.createTextNode(params);
+  const counter = document.createTextNode(cardsAmount);
   const getCardTotalNumber = () => {
     cardCounter.appendChild(counter);
   };

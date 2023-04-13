@@ -49,7 +49,7 @@ export const getCardComponent = (flashcard, index, cardList, appState) => {
   iconImg.src = 'src/icon/edit-icon.svg';
   iconImg.alt = 'edit-icon';
   iconImg.addEventListener('click', function () {
-    getCardEditComponent(state.isFront, appState, cardList, flashcard);
+    getCardEditComponent(state.isFront, appState, cardList, flashcard, index);
   });
   iconWrapper.append(iconImg);
 

@@ -4,12 +4,22 @@ export const getCardEditComponent = (
   isFront,
   appState,
   cardList,
-  flashcard
+  flashcard,
+  index,
+  cardsAmount
 ) => {
   while (cardList.firstChild) cardList.firstChild.remove();
 
   const editedCard = document.createElement('div');
   editedCard.classList.add('card-wrapper');
+
+  const removeButtonWrapper = document.createElement('div');
+  removeButtonWrapper.classList.add('btn-delete');
+  const removeButtonImage = document.createElement('img');
+  removeButtonImage.src = 'src/icon/trash-icon.svg';
+  removeButtonImage.alt = 'trash-icon';
+  removeButtonWrapper.append(removeButtonImage);
+  editedCard.append(removeButtonWrapper);
 
   const frontCardInfo = document.createElement('div');
   frontCardInfo.classList.add('front-card-info');
@@ -44,6 +54,9 @@ export const getCardEditComponent = (
     cardList,
     leftButton,
     rightButton,
-    textInput
+    textInput,
+    removeButtonWrapper,
+    index,
+    cardsAmount
   );
 };

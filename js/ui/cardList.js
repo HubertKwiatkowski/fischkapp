@@ -1,6 +1,6 @@
 import { getCardComponent } from './cardComponent.js';
 
-export const getCardList = (appState, cardList) => {
+export const getCardList = (appState, cardList, cardsAmount) => {
   while (cardList.firstChild) cardList.firstChild.remove();
 
   appState.flashcards.forEach((flashcard, index) => {
