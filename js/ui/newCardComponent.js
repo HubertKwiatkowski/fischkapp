@@ -107,6 +107,5 @@ export const getNewCardComponent = () => {
   rightButton.addEventListener('click', nextButton);
   const cardList = document.getElementById('card-list');
 
-  while (cardList.firstChild) cardList.firstChild.remove();
-  cardList.append(newCard);
+  cardList.insertBefore(newCard, cardList.firstChild);
 };

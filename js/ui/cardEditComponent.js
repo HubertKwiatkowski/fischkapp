@@ -8,10 +8,15 @@ export const getCardEditComponent = (
   index,
   cardsAmount
 ) => {
-  while (cardList.firstChild) cardList.firstChild.remove();
+  const cardToEdit = appState.flashcards.length - index - 1;
+  const editedCard = cardList.children[cardToEdit];
+  while (editedCard.firstChild) editedCard.firstChild.remove();
 
-  const editedCard = document.createElement('div');
   editedCard.classList.add('card-wrapper');
+
+  const flipperDiv = document.createElement('div');
+  flipperDiv.classList.add('flipper', 'card-front');
+  editedCard.append(flipperDiv);
 
   const removeButtonWrapper = document.createElement('div');
   removeButtonWrapper.classList.add('btn-delete');
@@ -46,7 +51,7 @@ export const getCardEditComponent = (
   buttonWrapper.append(leftButton);
   buttonWrapper.append(rightButton);
 
-  cardList.append(editedCard);
+  // currentCard.append(editedCard);
   getCardEdit(
     isFront,
     appState,

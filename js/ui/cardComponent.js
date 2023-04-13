@@ -26,11 +26,6 @@ export const getCardComponent = (flashcard, index, cardList, appState) => {
 
       element.classList.toggle('fade');
     }
-    setTimeout(() => {
-      card.querySelector('.text').innerText = state.isFront
-        ? flashcard.front
-        : flashcard.back;
-    }, 250);
   };
 
   const card = document.createElement('div');
@@ -48,7 +43,8 @@ export const getCardComponent = (flashcard, index, cardList, appState) => {
   card.append(iconWrapper);
   iconImg.src = 'src/icon/edit-icon.svg';
   iconImg.alt = 'edit-icon';
-  iconImg.addEventListener('click', function () {
+  iconImg.addEventListener('click', function (e) {
+    e.stopPropagation();
     getCardEditComponent(state.isFront, appState, cardList, flashcard, index);
   });
   iconWrapper.append(iconImg);
@@ -56,7 +52,7 @@ export const getCardComponent = (flashcard, index, cardList, appState) => {
   const text = document.createElement('p');
   card.append(text);
   if (state.isFront) text.id = 'front';
-  text.classList.add('fading', 'text');
+  text.classList.add('fading', 'input');
 
   card.addEventListener('click', handleToggleCard);
   text.innerText = flashcard.front;
