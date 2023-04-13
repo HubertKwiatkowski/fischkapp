@@ -10,9 +10,7 @@ export const getCardEditComponent = (
 ) => {
   const editedCard = cardList.children[index];
   while (editedCard.firstChild) editedCard.firstChild.remove();
-  console.log(editedCard.children);
 
-  // const editedCard = document.createElement('div');
   editedCard.classList.add('card-wrapper');
 
   const flipperDiv = document.createElement('div');

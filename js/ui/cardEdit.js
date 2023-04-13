@@ -45,9 +45,9 @@ export const getCardEdit = (
   const trashIcon = () => {
     getCardList(appState, cardList);
     const updatedAppState = removeCard(appState, index);
-    console.log(updatedAppState);
     appState.flashcards = updatedAppState.flashcards;
     const cardsAmount = appState.flashcards.length;
+    getCardList(appState, cardList);
     generateCounter(cardsAmount);
   };
 
