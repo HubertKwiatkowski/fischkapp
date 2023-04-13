@@ -26,6 +26,11 @@ export const getCardComponent = (flashcard, index, cardList, appState) => {
 
       element.classList.toggle('fade');
     }
+    setTimeout(() => {
+      card.querySelector('.input').innerText = state.isFront
+        ? flashcard.front
+        : flashcard.back;
+    }, 250);
   };
 
   const card = document.createElement('div');
