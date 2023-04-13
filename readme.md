@@ -17,3 +17,7 @@ This project aims to create a simple app that supports learning.
 ### 🔧 Technical requirements
 
 HTML, CSS, Javascript
+
+### Link to GitHub Pages
+
+https://hubertkwiatkowski.github.io/fischkapp/
