@@ -8,7 +8,8 @@ export const getCardEditComponent = (
   index,
   cardsAmount
 ) => {
-  const editedCard = cardList.children[index];
+  const cardToEdit = appState.flashcards.length - index - 1;
+  const editedCard = cardList.children[cardToEdit];
   while (editedCard.firstChild) editedCard.firstChild.remove();
 
   editedCard.classList.add('card-wrapper');
