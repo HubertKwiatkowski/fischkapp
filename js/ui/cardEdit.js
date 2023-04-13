@@ -1,7 +1,7 @@
 import { getCardList } from './cardList.js';
 import { generateCounter } from './cardCounter.js';
 
-export const getCardEdit = (isFront, index, params) => {
+export const getCardEdit = (isFront, index, params, cardList) => {
   let state = {
     isFront: isFront,
   };
@@ -18,7 +18,7 @@ export const getCardEdit = (isFront, index, params) => {
   dataToChange.value = readValue;
 
   const cancelButton = () => {
-    getCardList(params);
+    getCardList(params, cardList);
   };
 
   const saveButton = () => {
@@ -29,7 +29,7 @@ export const getCardEdit = (isFront, index, params) => {
       : (currentCard.back = newValue);
 
     const cardsAmount = params.flashcards.length;
-    getCardList(params);
+    getCardList(params, cardList);
     generateCounter(cardsAmount);
   };
 

@@ -8,14 +8,15 @@ document.addEventListener('DOMContentLoaded', () => {
   let appState = createState();
   const cardsAmount = appState.flashcards.length;
   const addNewCardButton = document.getElementById('add-card-button');
+  const cardList = document.getElementById('card-list');
 
   const createNewCard = () => {
     getNewCardComponent();
-    getNewCard(appState);
+    getNewCard(appState, cardList);
   };
 
   addNewCardButton.addEventListener('click', createNewCard);
 
   generateCounter(cardsAmount);
-  getCardList(appState);
+  getCardList(appState, cardList);
 });

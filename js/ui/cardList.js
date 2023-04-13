@@ -2,8 +2,7 @@ import { getCardComponent } from './cardComponent.js';
 import { getCardEdit } from './cardEdit.js';
 import { getCardEditComponent } from './cardEditComponent.js';
 
-export const getCardList = (params) => {
-  const cardList = document.getElementById('card-list');
+export const getCardList = (params, cardList) => {
   while (cardList.firstChild) cardList.firstChild.remove();
 
   params.flashcards.forEach((flashcard, index) => {
@@ -17,8 +16,8 @@ export const getCardList = (params) => {
       } else {
         isFront = false;
       }
-      getCardEditComponent();
-      getCardEdit(isFront, index, params);
+      getCardEditComponent(cardList);
+      getCardEdit(isFront, index, params, cardList);
     });
     cardList.append(card);
   });

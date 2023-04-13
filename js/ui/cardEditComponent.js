@@ -1,5 +1,4 @@
-export const getCardEditComponent = () => {
-  const cardList = document.getElementById('card-list');
+export const getCardEditComponent = (cardList) => {
   while (cardList.firstChild) cardList.firstChild.remove();
 
   const editedCard = document.createElement('div');
@@ -31,4 +30,5 @@ export const getCardEditComponent = () => {
   buttonWrapper.append(rightButton);
 
   cardList.append(editedCard);
+  return leftButton, rightButton, textInput;
 };

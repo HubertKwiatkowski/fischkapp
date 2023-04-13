@@ -2,14 +2,14 @@ import { getCardList } from './cardList.js';
 import { addCard } from '../data/actions.js';
 import { generateCounter } from './cardCounter.js';
 
-export const getNewCard = (params) => {
+export const getNewCard = (params, cardList) => {
   const newCardData = { front: '', back: '' };
   const leftButton = document.querySelector('.btn-left');
   const rightButton = document.querySelector('.btn-right');
 
   const cancelButton = () => {
     if (!newCardData.front) document.querySelector('.new-value').value = '';
-    getCardList(params);
+    getCardList(params, cardList);
   };
 
   const nextButton = () => {
@@ -52,7 +52,7 @@ export const getNewCard = (params) => {
 
       const cardsAmount = params.flashcards.length;
 
-      getCardList(params);
+      getCardList(params, cardList);
       generateCounter(cardsAmount);
     }
   };
