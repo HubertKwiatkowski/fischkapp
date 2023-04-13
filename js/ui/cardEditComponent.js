@@ -1,4 +1,6 @@
-export const getCardEditComponent = (cardList) => {
+import { getCardEdit } from './cardEdit.js';
+
+export const getCardEditComponent = (isFront, index, params, cardList) => {
   while (cardList.firstChild) cardList.firstChild.remove();
 
   const editedCard = document.createElement('div');
@@ -30,5 +32,13 @@ export const getCardEditComponent = (cardList) => {
   buttonWrapper.append(rightButton);
 
   cardList.append(editedCard);
-  return leftButton, rightButton, textInput;
+  getCardEdit(
+    isFront,
+    index,
+    params,
+    cardList,
+    leftButton,
+    rightButton,
+    textInput
+  );
 };

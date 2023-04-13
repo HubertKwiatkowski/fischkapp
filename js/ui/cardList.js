@@ -16,8 +16,7 @@ export const getCardList = (params, cardList) => {
       } else {
         isFront = false;
       }
-      getCardEditComponent(cardList);
-      getCardEdit(isFront, index, params, cardList);
+      getCardEditComponent(isFront, index, params, cardList);
     });
     cardList.append(card);
   });
