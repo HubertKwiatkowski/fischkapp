@@ -1,4 +1,6 @@
-export const getCardComponent = (params) => {
+import { getCardEditComponent } from './cardEditComponent.js';
+
+export const getCardComponent = (flashcard, index, cardList, appState) => {
   let state = {
     isFront: true,
   };
@@ -26,13 +28,14 @@ export const getCardComponent = (params) => {
     }
     setTimeout(() => {
       card.querySelector('.text').innerText = state.isFront
-        ? params.front
-        : params.back;
+        ? flashcard.front
+        : flashcard.back;
     }, 250);
   };
 
   const card = document.createElement('div');
   card.classList.add('front', 'card-wrapper');
+  card.id = index;
 
   const flipperDiv = document.createElement('div');
   flipperDiv.classList.add('flipper', 'card-front');
@@ -45,6 +48,9 @@ export const getCardComponent = (params) => {
   card.append(iconWrapper);
   iconImg.src = 'src/icon/edit-icon.svg';
   iconImg.alt = 'edit-icon';
+  iconImg.addEventListener('click', function () {
+    getCardEditComponent(state.isFront, appState, cardList, flashcard);
+  });
   iconWrapper.append(iconImg);
 
   const text = document.createElement('p');
@@ -53,7 +59,7 @@ export const getCardComponent = (params) => {
   text.classList.add('fading', 'text');
 
   card.addEventListener('click', handleToggleCard);
-  text.innerText = params.front;
+  text.innerText = flashcard.front;
 
   return card;
 };

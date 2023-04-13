@@ -1,6 +1,11 @@
 import { getCardEdit } from './cardEdit.js';
 
-export const getCardEditComponent = (isFront, index, params, cardList) => {
+export const getCardEditComponent = (
+  isFront,
+  appState,
+  cardList,
+  flashcard
+) => {
   while (cardList.firstChild) cardList.firstChild.remove();
 
   const editedCard = document.createElement('div');
@@ -34,8 +39,8 @@ export const getCardEditComponent = (isFront, index, params, cardList) => {
   cardList.append(editedCard);
   getCardEdit(
     isFront,
-    index,
-    params,
+    appState,
+    flashcard,
     cardList,
     leftButton,
     rightButton,

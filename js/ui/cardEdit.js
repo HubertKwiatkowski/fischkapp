@@ -3,38 +3,39 @@ import { generateCounter } from './cardCounter.js';
 
 export const getCardEdit = (
   isFront,
-  index,
-  params,
+  appState,
+  flashcard,
   cardList,
   leftButton,
   rightButton,
-  dataToChange
+  textInput
 ) => {
   let state = {
     isFront: isFront,
   };
-  const currentCard = params.flashcards[index];
+
+  const currentCard = flashcard;
   let readValue = '';
 
   state.isFront
     ? (readValue = currentCard.front)
     : (readValue = currentCard.back);
 
-  dataToChange.value = readValue;
+  textInput.value = readValue;
 
   const cancelButton = () => {
-    getCardList(params, cardList);
+    getCardList(appState, cardList);
   };
 
   const saveButton = () => {
-    let newValue = dataToChange.value;
+    let newValue = textInput.value;
 
     state.isFront
       ? (currentCard.front = newValue)
       : (currentCard.back = newValue);
 
-    const cardsAmount = params.flashcards.length;
-    getCardList(params, cardList);
+    const cardsAmount = appState.flashcards.length;
+    getCardList(appState, cardList);
     generateCounter(cardsAmount);
   };
 

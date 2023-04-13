@@ -1,23 +1,10 @@
 import { getCardComponent } from './cardComponent.js';
-import { getCardEdit } from './cardEdit.js';
-import { getCardEditComponent } from './cardEditComponent.js';
 
-export const getCardList = (params, cardList) => {
+export const getCardList = (appState, cardList) => {
   while (cardList.firstChild) cardList.firstChild.remove();
 
-  params.flashcards.forEach((flashcard, index) => {
-    let isFront = true;
-    const card = getCardComponent(flashcard);
-    card.id = index;
-    const editCardIcon = card.querySelector('.edit-icon');
-    editCardIcon.addEventListener('click', function () {
-      if (card.classList.contains('front')) {
-        isFront = true;
-      } else {
-        isFront = false;
-      }
-      getCardEditComponent(isFront, index, params, cardList);
-    });
+  appState.flashcards.forEach((flashcard, index) => {
+    const card = getCardComponent(flashcard, index, cardList, appState);
     cardList.append(card);
   });
 };
